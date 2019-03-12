@@ -63,7 +63,7 @@ std::vector<User> SocialNetwork::getUsersWithHobby(std::string hobby) {
     return usersWithHobby;
 }
 
-std::map<unsigned int, User> SocialNetwork::getUsersWithHobbies(std::vector<std::string> hobbies) {
+std::map<unsigned int, User> SocialNetwork::searchByHobbies(std::vector<std::string> hobbies) {
     std::map<unsigned int, User> usersWithHobby;
     for (std::pair<unsigned int, User> e : users) {
         for (std::string hobby : hobbies) {

@@ -31,7 +31,9 @@ void deleteUserById(unsigned int id);
 void deleteAllUsers();
 
 std::vector<User> getUsersWithHobby(std::string hobby);
-std::map<unsigned int, User> getUsersWithHobbies(std::vector<std::string> hobbies);
+
+
+std::map<unsigned int, User> searchByHobbies(std::vector<std::string> hobbies);
 
 private:
     std::map<unsigned int, User > users;

@@ -159,14 +159,14 @@ bool testHobbies() {
     testsDone++;
 
 
-    std::map<unsigned int, User> hobbies3 = theBook.getUsersWithHobbies({"tanssi", "kendo", "jalis", "koris", "bilis"});
+    std::map<unsigned int, User> hobbies3 = theBook.searchByHobbies({"tanssi", "kendo", "jalis", "koris", "bilis"});
     if (hobbies3.size() != 4) {
         std::cout << "FAIL: hobby3 count should be 4" << std::endl;
         return false;
     }
     testsDone++;
 
-    std::map<unsigned int, User> hobbies4 = theBook.getUsersWithHobbies({"something wierd"});
+    std::map<unsigned int, User> hobbies4 = theBook.searchByHobbies({"something wierd"});
     if (hobbies4.size() != 0) {
         std::cout << "FAIL: hobby3 count should be 0" << std::endl;
         return false;
