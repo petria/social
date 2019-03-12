@@ -24,16 +24,19 @@ int getUserCount() const;
 std::map<unsigned int, User> getUsers() const;
 User getUserById(unsigned int id);
 User* getUserRefById(unsigned int id);
+std::vector<User> getUsersWithHobby(std::string hobby);
 
 void addUser(User user);
 void deleteUser(User user);
 void deleteUserById(unsigned int id);
 void deleteAllUsers();
 
-std::vector<User> getUsersWithHobby(std::string hobby);
-
-
 std::map<unsigned int, User> searchByHobbies(std::vector<std::string> hobbies);
+std::map<unsigned int, User> searchByName(std::string name);
+std::map<unsigned int, User> searchByNameMatching(std::string regexp);
+std::map<unsigned int, User> searchByAge(unsigned int age);
+std::map<unsigned int, User> searchByAgeBetween(unsigned int age1, unsigned int age2);
+
 
 private:
     std::map<unsigned int, User > users;

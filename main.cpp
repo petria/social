@@ -37,7 +37,7 @@ bool testAddAndDeleteUsers() {
         return false;
     }
     testsDone++;
-    
+
     theBook.deleteUserById(1001);
     if (theBook.getUserCount() != 2) {
         std::cout << "FAIL: user count should be 2" << std::endl;
@@ -139,10 +139,10 @@ bool testHobbies() {
     theBook.addUser(user3);
     theBook.addUser(user4);
 
-/*    user1.toString();
-    user2.toString();
-    user3.toString();
-    user4.toString();*/
+    /*    user1.toString();
+        user2.toString();
+        user3.toString();
+        user4.toString();*/
 
     std::vector<User> hobbies1 = theBook.getUsersWithHobby("kendo");
     if (hobbies1.size() != 2) {
@@ -185,12 +185,50 @@ bool testSearch() {
     User user2 = createUser(1002, "Ville", 31, 161);
     User user3 = createUser(1003, "Jorma", 32, 162);
     User user4 = createUser(1004, "Liisa", 33, 163);
-    
+
     theBook.addUser(user1);
     theBook.addUser(user2);
     theBook.addUser(user3);
     theBook.addUser(user4);
 
+    /*    user1.toString();
+        user2.toString();
+        user3.toString();
+        user4.toString();*/
+
+
+    std::map<unsigned int, User> search1 = theBook.searchByAge(31);
+    if (search1.size() != 1) {
+        std::cout << "FAIL: search1 count should be 1" << std::endl;
+        return false;
+    }
+    testsDone++;
+
+
+    std::map<unsigned int, User> search2 = theBook.searchByAgeBetween(10, 100);
+    if (search2.size() != 4) {
+        std::cout << "FAIL: search2 count should be 4" << std::endl;
+        return false;
+    }
+    testsDone++;
+
+
+    std::map<unsigned int, User> search3 = theBook.searchByName("Jorma");
+    if (search3.size() != 1) {
+        std::cout << "FAIL: search3 count should be 1" << std::endl;
+        return false;
+    }
+    testsDone++;
+
+    std::map<unsigned int, User> search4 = theBook.searchByNameMatching("(.*)ll(.*)");
+    if (search4.size() != 2) {
+        std::cout << "FAIL: search4 count should be 2" << std::endl;
+        return false;
+    }
+    testsDone++;
+
+    std::cout << "ALL OK: " << testsDone << std::endl;
+    return true;
 }
 
 /*
@@ -209,6 +247,11 @@ int main(int argc, char** argv) {
     std::cout << "test3: start" << std::endl;
     bool test3 = testHobbies();
     std::cout << "test3: " << test3 << std::endl;
+
+
+    std::cout << "test4: start" << std::endl;
+    bool test4 = testSearch();
+    std::cout << "test4: " << test4 << std::endl;
 
     return 0;
 }

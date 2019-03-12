@@ -6,6 +6,7 @@
  */
 
 #include <map>
+#include <regex>
 #include <vector>
 
 #include "SocialNetwork.h"
@@ -54,23 +55,66 @@ void SocialNetwork::deleteAllUsers() {
 }
 
 std::vector<User> SocialNetwork::getUsersWithHobby(std::string hobby) {
-    std::vector<User> usersWithHobby;
+    std::vector<User> results;
     for (std::pair<unsigned int, User> e : users) {
         if (e.second.hasHobby(hobby)) {
-            usersWithHobby.push_back(e.second);
+            results.push_back(e.second);
         }
     }
-    return usersWithHobby;
+    return results;
 }
 
 std::map<unsigned int, User> SocialNetwork::searchByHobbies(std::vector<std::string> hobbies) {
-    std::map<unsigned int, User> usersWithHobby;
+    std::map<unsigned int, User> results;
     for (std::pair<unsigned int, User> e : users) {
         for (std::string hobby : hobbies) {
             if (e.second.hasHobby(hobby)) {
-                usersWithHobby[e.second.getId()] = e.second;
+                results[e.second.getId()] = e.second;
             }
         }
     }
-    return usersWithHobby;
+    return results;
 }
+
+std::map<unsigned int, User> SocialNetwork::searchByAge(unsigned int age) {
+    std::map<unsigned int, User> results;
+    for (std::pair<unsigned int, User> e : users) {
+        if (e.second.getAge() == age) {
+            results[e.second.getId()] = e.second;
+        }
+    }
+    return results;
+}
+
+std::map<unsigned int, User> SocialNetwork::searchByAgeBetween(unsigned int age1, unsigned int age2) {
+    std::map<unsigned int, User> results;
+    for (std::pair<unsigned int, User> e : users) {
+        if (e.second.getAge() >= age1 && e.second.getAge() <= age2) {
+            results[e.second.getId()] = e.second;
+        }
+    }
+    return results;
+}
+
+std::map<unsigned int, User> SocialNetwork::searchByName(std::string name) {
+    std::map<unsigned int, User> results;
+    for (std::pair<unsigned int, User> e : users) {
+        if (e.second.getName() == name) {
+            results[e.second.getId()] = e.second;
+        }
+    }
+    return results;
+}
+
+std::map<unsigned int, User> SocialNetwork::searchByNameMatching(std::string regexp) {
+//
+    std::map<unsigned int, User> results;
+    for (std::pair<unsigned int, User> e : users) {
+        if (std::regex_match (e.second.getName(), std::regex(regexp) )) {
+            results[e.second.getId()] = e.second;
+        }
+    }
+    return results;
+    
+}
+
