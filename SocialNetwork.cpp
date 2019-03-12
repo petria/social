@@ -107,7 +107,6 @@ std::map<unsigned int, User> SocialNetwork::searchByName(std::string name) {
 }
 
 std::map<unsigned int, User> SocialNetwork::searchByNameMatching(std::string regexp) {
-//
     std::map<unsigned int, User> results;
     for (std::pair<unsigned int, User> e : users) {
         if (std::regex_match (e.second.getName(), std::regex(regexp) )) {
@@ -115,6 +114,14 @@ std::map<unsigned int, User> SocialNetwork::searchByNameMatching(std::string reg
         }
     }
     return results;
-    
 }
 
+std::map<unsigned int, User> SocialNetwork::searchBySex(User::Sex sex) {
+    std::map<unsigned int, User> results;
+    for (std::pair<unsigned int, User> e : users) {
+        if (e.second.getSex() == sex) {
+            results[e.second.getId()] = e.second;
+        }
+    }
+    return results;
+}

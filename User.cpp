@@ -19,7 +19,8 @@ name(std::move(orig.name)),
 age(orig.age),
 height(orig.height),
 friends(orig.friends),
-hobbies(orig.hobbies)
+hobbies(orig.hobbies),
+sex(orig.sex)
 {
 
 }
@@ -92,6 +93,16 @@ void User::addHobby(std::string hobby) {
 bool User::hasHobby(std::string hobby) {
     return hobbies.count(hobby) > 0;
 }
+
+User::Sex User::getSex() {
+    return this->sex;
+}
+
+void User::setSex(Sex sex) {
+    this->sex = sex;
+}
+
+
 
 void User::toString() const {
 

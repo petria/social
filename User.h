@@ -13,7 +13,12 @@
 #include <string>
 
 class User {
+    
+    
 public:
+    
+    enum Sex {Male, Female};
+    
     User();
     User(const User& orig);
     virtual ~User();
@@ -39,6 +44,9 @@ public:
     void addHobby(std::string hobby);
     bool hasHobby(std::string hobby);
 
+    Sex getSex();
+    void setSex(Sex sex);
+    
     void toString() const;
 
 private:
@@ -47,7 +55,8 @@ private:
     std::string name;
     unsigned int age;
     unsigned int height;
-
+    Sex sex;
+    
     std::map<unsigned int, User> friends;
     std::map<std::string, std::string> hobbies;
 

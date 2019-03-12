@@ -14,12 +14,14 @@
 
 using namespace std;
 
-User createUser(unsigned int id, std::string name, unsigned int age, unsigned int height) {
+
+User createUser(unsigned int id, std::string name, unsigned int age, unsigned int height, User::Sex sex) {
     User user;
     user.setId(id);
     user.setName(name);
     user.setAge(age);
     user.setHeight(height);
+    user.setSex(sex);
     return user;
 }
 
@@ -27,9 +29,9 @@ bool testAddAndDeleteUsers() {
     int testsDone = 0;
 
     SocialNetwork theBook;
-    theBook.addUser(createUser(1000, "user 1", 30, 160));
-    theBook.addUser(createUser(1001, "user 2", 35, 170));
-    theBook.addUser(createUser(1002, "user 3", 40, 180));
+    theBook.addUser(createUser(1000, "user 1", 30, 160, User::Male));
+    theBook.addUser(createUser(1001, "user 2", 35, 170, User::Male));
+    theBook.addUser(createUser(1002, "user 3", 40, 180, User::Male));
 
 
     if (theBook.getUserCount() != 3) {
@@ -60,10 +62,10 @@ bool testFriends() {
     int testsDone = 0;
 
     SocialNetwork theBook;
-    User user1 = createUser(1001, "Kalle", 30, 160);
-    User user2 = createUser(1002, "Ville", 31, 161);
-    User user3 = createUser(1003, "Jorma", 32, 162);
-    User user4 = createUser(1004, "Liisa", 33, 163);
+    User user1 = createUser(1001, "Kalle", 30, 160, User::Male);
+    User user2 = createUser(1002, "Ville", 31, 161, User::Male);
+    User user3 = createUser(1003, "Jorma", 32, 162, User::Male);
+    User user4 = createUser(1004, "Liisa", 33, 163, User::Female);
 
     theBook.addUser(user1);
     theBook.addUser(user2);
@@ -109,10 +111,10 @@ bool testHobbies() {
     int testsDone = 0;
 
     SocialNetwork theBook;
-    User user1 = createUser(1001, "Kalle", 30, 160);
-    User user2 = createUser(1002, "Ville", 31, 161);
-    User user3 = createUser(1003, "Jorma", 32, 162);
-    User user4 = createUser(1004, "Liisa", 33, 163);
+    User user1 = createUser(1001, "Kalle", 30, 160, User::Male);
+    User user2 = createUser(1002, "Ville", 31, 161, User::Male);
+    User user3 = createUser(1003, "Jorma", 32, 162, User::Male);
+    User user4 = createUser(1004, "Liisa", 33, 163, User::Female);
 
 
     user1.addFriend(user2);
@@ -181,20 +183,18 @@ bool testSearch() {
     int testsDone = 0;
 
     SocialNetwork theBook;
-    User user1 = createUser(1001, "Kalle", 30, 160);
-    User user2 = createUser(1002, "Ville", 31, 161);
-    User user3 = createUser(1003, "Jorma", 32, 162);
-    User user4 = createUser(1004, "Liisa", 33, 163);
+    User user1 = createUser(1001, "Kalle", 30, 160, User::Male);
+    User user2 = createUser(1002, "Ville", 31, 161, User::Male);
+    User user3 = createUser(1003, "Maija", 32, 162, User::Female);
+    User user4 = createUser(1004, "Liisa", 33, 163, User::Female);
+    User user5 = createUser(1005, "Jorma", 34, 173, User::Male);
 
+    
     theBook.addUser(user1);
     theBook.addUser(user2);
     theBook.addUser(user3);
     theBook.addUser(user4);
-
-    /*    user1.toString();
-        user2.toString();
-        user3.toString();
-        user4.toString();*/
+    theBook.addUser(user5);
 
 
     std::map<unsigned int, User> search1 = theBook.searchByAge(31);
@@ -206,8 +206,8 @@ bool testSearch() {
 
 
     std::map<unsigned int, User> search2 = theBook.searchByAgeBetween(10, 100);
-    if (search2.size() != 4) {
-        std::cout << "FAIL: search2 count should be 4" << std::endl;
+    if (search2.size() != 5) {
+        std::cout << "FAIL: search2 count should be 5: " << search2.size() << std::endl;
         return false;
     }
     testsDone++;
@@ -220,6 +220,7 @@ bool testSearch() {
     }
     testsDone++;
 
+    
     std::map<unsigned int, User> search4 = theBook.searchByNameMatching("(.*)ll(.*)");
     if (search4.size() != 2) {
         std::cout << "FAIL: search4 count should be 2" << std::endl;
@@ -227,6 +228,20 @@ bool testSearch() {
     }
     testsDone++;
 
+    std::map<unsigned int, User> search5 = theBook.searchBySex(User::Male);
+    if (search5.size() != 3) {
+        std::cout << "FAIL: search5 count should be 3: " << search5.size() << std::endl;
+        return false;
+    }
+    testsDone++;
+    
+    std::map<unsigned int, User> search6 = theBook.searchBySex(User::Female);
+    if (search6.size() != 2) {
+        std::cout << "FAIL: search6 count should be 2: " << search6.size() << std::endl;
+        return false;
+    }
+    testsDone++;
+    
     std::cout << "ALL OK: " << testsDone << std::endl;
     return true;
 }

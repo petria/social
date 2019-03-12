@@ -36,7 +36,7 @@ std::map<unsigned int, User> searchByName(std::string name);
 std::map<unsigned int, User> searchByNameMatching(std::string regexp);
 std::map<unsigned int, User> searchByAge(unsigned int age);
 std::map<unsigned int, User> searchByAgeBetween(unsigned int age1, unsigned int age2);
-
+std::map<unsigned int, User> searchBySex(User::Sex sex);
 
 private:
     std::map<unsigned int, User > users;
