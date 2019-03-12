@@ -9,6 +9,9 @@
 #include <iostream>
 #include <string>
 
+#include "CacheManager.h"
+#include "Cacheable.h"
+
 #include "SocialNetwork.h"
 #include "User.h"
 
@@ -246,12 +249,22 @@ bool testSearch() {
     return true;
 }
 
+bool testCacheManager() {
+    CacheManager cache;
+    User* user = (User *) cache.createUser(10001);
+    
+    user->toString();
+    
+    cache.deleteCacheable((Cacheable *)user);
+    delete user;
+}
+
 /*
  * 
  */
 int main(int argc, char** argv) {
 
-    std::cout << "test1: start" << std::endl;
+/*    std::cout << "test1: start" << std::endl;
     bool test1 = testAddAndDeleteUsers();
     std::cout << "test1: " << test1 << std::endl;
 
@@ -267,7 +280,8 @@ int main(int argc, char** argv) {
     std::cout << "test4: start" << std::endl;
     bool test4 = testSearch();
     std::cout << "test4: " << test4 << std::endl;
-
+*/
+    testCacheManager();
     return 0;
 }
 

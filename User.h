@@ -12,7 +12,9 @@
 #include <vector>
 #include <string>
 
-class User {
+#include "Cacheable.h"
+
+class User : Cacheable {
     
     
 public:
@@ -49,6 +51,9 @@ public:
     
     void toString() const;
 
+    std::string getHashKey();
+    Cacheable* createInstance();
+    
 private:
 
     unsigned int id;

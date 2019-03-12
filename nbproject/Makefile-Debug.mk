@@ -35,6 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/CacheManager.o \
+	${OBJECTDIR}/Cacheable.o \
 	${OBJECTDIR}/SocialNetwork.o \
 	${OBJECTDIR}/User.o \
 	${OBJECTDIR}/main.o
@@ -63,6 +65,16 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/social: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/social ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/CacheManager.o: CacheManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CacheManager.o CacheManager.cpp
+
+${OBJECTDIR}/Cacheable.o: Cacheable.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Cacheable.o Cacheable.cpp
 
 ${OBJECTDIR}/SocialNetwork.o: SocialNetwork.cpp
 	${MKDIR} -p ${OBJECTDIR}

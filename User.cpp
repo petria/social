@@ -102,7 +102,13 @@ void User::setSex(Sex sex) {
     this->sex = sex;
 }
 
+std::string User::getHashKey() {
+    return "User_" + std::to_string(id) + "_" + name;
+}
 
+Cacheable* User::createInstance() {
+    return new User();
+}
 
 void User::toString() const {
 
