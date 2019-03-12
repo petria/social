@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=socialnetwork
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/socialnetwork
+CND_ARTIFACT_NAME_Debug=social
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/social
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=socialnetwork.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/socialnetwork.tar
+CND_PACKAGE_NAME_Debug=social.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/social.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=socialnetwork
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/socialnetwork
+CND_ARTIFACT_NAME_Release=social
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/social
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=socialnetwork.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/socialnetwork.tar
+CND_PACKAGE_NAME_Release=social.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/social.tar
 #
 # include compiler specific variables
 #

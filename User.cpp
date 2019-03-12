@@ -23,7 +23,10 @@ User::User(const User& orig) :
 id(orig.id),
 name(std::move(orig.name)),
 age(orig.age),
-height(orig.height) {
+height(orig.height),
+friends(orig.friends),
+hobbies(orig.hobbies)
+{
 
 }
 

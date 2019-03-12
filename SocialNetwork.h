@@ -29,15 +29,15 @@ public:
 int getUserCount() const;    
 std::map<unsigned int, User> getUsers() const;
 User getUserById(unsigned int id);
+User* getUserRefById(unsigned int id);
 
-User& test2(unsigned int id);
-void test(User& user);
 void addUser(User user);
 void deleteUser(User user);
 void deleteUserById(unsigned int id);
 void deleteAllUsers();
 
 std::vector<User> getUsersWithHobby(std::string hobby);
+std::map<unsigned int, User> getUsersWithHobbies(std::vector<std::string> hobbies);
 
 private:
     std::map<unsigned int, User > users;
