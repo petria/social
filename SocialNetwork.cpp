@@ -42,6 +42,11 @@ void SocialNetwork::addUser(User user) {
     this->users[user.getId()] = user;
 }
 
+User* SocialNetwork::addUser(unsigned int id, std::string name, unsigned int age, unsigned int height, User::Sex sex, std::vector<std::string> hobbies) {
+    return (User*) cache.createUser(id, name, age, height, sex, hobbies);
+}
+
+
 void SocialNetwork::deleteUser(User user) {
     this->users.erase(user.getId());
 }

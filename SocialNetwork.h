@@ -11,6 +11,9 @@
 #include <map>
 #include <vector>
 
+#include "CacheManager.h"
+#include "Cacheable.h"
+
 #include "User.h"
 
 
@@ -26,6 +29,7 @@ User getUserById(unsigned int id);
 User* getUserRefById(unsigned int id);
 std::vector<User> getUsersWithHobby(std::string hobby);
 
+User* addUser(unsigned int id, std::string name, unsigned int age, unsigned int height, User::Sex sex, std::vector<std::string> hobbies);
 void addUser(User user);
 void deleteUser(User user);
 void deleteUserById(unsigned int id);
@@ -40,6 +44,8 @@ std::map<unsigned int, User> searchBySex(User::Sex sex);
 
 private:
     std::map<unsigned int, User > users;
+    CacheManager cache;
+    
 };
 
 #endif /* SOCIALNETWORK_H */

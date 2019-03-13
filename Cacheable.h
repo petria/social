@@ -15,6 +15,7 @@
 #define CACHEABLE_H
 
 #include <string>
+#include <vector>
 
 class Cacheable {
 public:
@@ -22,7 +23,7 @@ public:
     Cacheable(const Cacheable& orig);
     virtual ~Cacheable();
     
-    virtual std::string getHashKey() = 0;
+    virtual std::vector<std::string> getCacheKeys() = 0;
     virtual Cacheable* createInstance() = 0;
     
 private:

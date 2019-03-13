@@ -251,7 +251,7 @@ bool testSearch() {
 
 bool testCacheManager() {
     CacheManager cache;
-    User* user = (User *) cache.createUser(10001);
+    User* user = (User *) cache.createUser(10001, "name", 24, 160, User::Male, {"kendo", "sulis"});
     
     user->toString();
     

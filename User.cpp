@@ -19,7 +19,7 @@ name(std::move(orig.name)),
 age(orig.age),
 height(orig.height),
 friends(orig.friends),
-hobbies(orig.hobbies),
+hobbiesMap(orig.hobbiesMap),
 sex(orig.sex)
 {
 
@@ -84,14 +84,18 @@ std::vector<unsigned int> User::getFriendIds() {
     return ids;
 }
 
+void User::setHobbies(std::vector<std::string> hobbies) {
+    this->hobbies = hobbies;
+}
+
 void User::addHobby(std::string hobby) {
-    this->hobbies[hobby] = hobby;
+    this->hobbiesMap[hobby] = hobby;
 
     //    this->hobbies.push_back(hobby);
 }
 
 bool User::hasHobby(std::string hobby) {
-    return hobbies.count(hobby) > 0;
+    return hobbiesMap.count(hobby) > 0;
 }
 
 User::Sex User::getSex() {
@@ -102,8 +106,13 @@ void User::setSex(Sex sex) {
     this->sex = sex;
 }
 
-std::string User::getHashKey() {
-    return "User_" + std::to_string(id) + "_" + name;
+
+std::vector<std::string> User::getCacheKeys() {
+    std::vector<std::string> keys;
+    for (std::string hobby : hobbies)
+        keys.push_back(hobby);
+    
+    return keys;
 }
 
 Cacheable* User::createInstance() {
@@ -113,15 +122,18 @@ Cacheable* User::createInstance() {
 void User::toString() const {
 
     std::cout << "[ User: id=" << std::to_string(id) << ", name=" << name << ", age=" << std::to_string(age) << ", height=" << std::to_string(height);
-    std::cout << ",  friend ids: [ ";
+    std::cout << ", sex=" << (sex==0?"MALE":"FEMALE") << ", friend ids: [ ";
     for (std::pair<unsigned int, User> e : friends) {
         std::cout << e.second.getId() << " ";
     }
 
     std::cout << "],  hobbies: [ ";
-    for (std::pair<std::string, std::string> e : hobbies) {
-        std::cout << e.second << " ";
+    for (std::string hobby : hobbies) {
+        std::cout << hobby << " ";
     }
+/*    for (std::pair<std::string, std::string> e : hobbiesMap) {
+        std::cout << e.second << " ";
+    }*/
     std::cout << " ] " << std::endl;
 
 }

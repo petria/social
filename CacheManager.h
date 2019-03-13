@@ -12,6 +12,7 @@
 #include <string>
 
 #include "Cacheable.h"
+#include "User.h"
 
 class CacheManager {
 public:
@@ -19,12 +20,14 @@ public:
     CacheManager(const CacheManager& orig);
     virtual ~CacheManager();
     
-    Cacheable* createUser(unsigned int id);
+    Cacheable* createUser(unsigned int id, std::string name, unsigned int age, unsigned int height, User::Sex sex, std::vector<std::string> hobbies);
     void deleteCacheable(Cacheable* cacheable);
     
 private:
-    void addToCache(Cacheable* instance);
-    void removeFromCache(Cacheable* instance);
+    void addToCache(std::string key, Cacheable* instance);
+    void removeFromCache(std::string key, Cacheable* instance);
+
+    void cacheUser(User* user);
     
     std::map<std::string, Cacheable *> instanceCache;
     

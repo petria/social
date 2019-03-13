@@ -15,7 +15,7 @@
 #include "Cacheable.h"
 
 class User : Cacheable {
-    
+   
     
 public:
     
@@ -43,6 +43,7 @@ public:
     int getFriendCount();
     std::vector<unsigned int> getFriendIds();
 
+    void setHobbies(std::vector<std::string> hobbies);
     void addHobby(std::string hobby);
     bool hasHobby(std::string hobby);
 
@@ -50,7 +51,8 @@ public:
     void setSex(Sex sex);
     
     void toString() const;
-
+    
+    std::vector<std::string> getCacheKeys();
     std::string getHashKey();
     Cacheable* createInstance();
     
@@ -63,8 +65,8 @@ private:
     Sex sex;
     
     std::map<unsigned int, User> friends;
-    std::map<std::string, std::string> hobbies;
-
+    std::map<std::string, std::string> hobbiesMap;
+    std::vector<std::string> hobbies;
 };
 
 #endif /* USER_H */
